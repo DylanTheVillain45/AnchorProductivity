@@ -6,21 +6,26 @@ import Journal from "./pages/core/Journal";
 import Calendar from "./pages/core/Calendar";
 import Entry from "./pages/core/Entry";
 import Tasks from "./pages/core/Tasks";
-import Settings from "./pages/support/Settings";
+import Preferences from "./pages/support/Preferences";
 import Profile from "./pages/support/Profile";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/journal" element={<Journal />} />
-      <Route path="/calendar" element={<Calendar />} />
-      <Route path="/calendar/entry/:id" element={<Entry />} />
-      <Route path="/tasks" element={<Tasks />} />
-      <Route path="/settings" element={<Settings />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/journal" element={<Journal />} />
+        <Route path="/calendar" element={<Calendar />} />
+        <Route path="/calendar/entry/:id" element={<Entry />} />
+        <Route path="/tasks" element={<Tasks />} />
+        <Route path="/preferences" element={<Preferences />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
+   
   );
 }
 
