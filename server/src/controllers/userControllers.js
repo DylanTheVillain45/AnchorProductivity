@@ -1,5 +1,4 @@
 import User from "../models/User.js";
-import { GetHash } from "../config/hash.js";
 
 export async function getAllUsers(_, res) {
   try {
@@ -26,21 +25,6 @@ export async function getUserbyId(req, res) {
   }
 }
 
-export async function createUser(req, res) {
-  try {
-    const { email, password, role } = req.body;
-    const hashedPassword = GetHash(password);
-    if (!role) role = "user";
-
-    const user = new User({ email, hashedPassword, role });
-    const savedUser = await user.save();
-
-    res.status(201).json(savedUser);
-  } catch (error) {
-    console.log("Error in createUser", error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-}
 
 export async function deleteUser(req, res) {
   try {

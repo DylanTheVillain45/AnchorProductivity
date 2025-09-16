@@ -1,15 +1,23 @@
-import React, { useState } from 'react'
-import api from "../lib/axios.js"
+import React, { useState } from "react";
+import api from "../lib/axios.js";
 
 const SignUpForm = () => {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        
-        
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    try {
+      api.post("/auth/signup", {
+        email,
+        password,
+        role: "user",
+      });
+    } catch (error) {
+      console.log(error)
     }
+  };
 
   return (
     <form
@@ -39,6 +47,6 @@ const SignUpForm = () => {
       </button>
     </form>
   );
-}
+};
 
-export default SignUpForm
+export default SignUpForm;
