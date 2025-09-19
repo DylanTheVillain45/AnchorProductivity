@@ -14,7 +14,7 @@ const SignUpForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="card bg-base-100 w-full max-w-sm shadow-xl p-6"
+      className="bg-base-100 w-2/3 max-w-sm flex flex-col p-6 shadow-xl rounded-xl"
     >
       <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
 

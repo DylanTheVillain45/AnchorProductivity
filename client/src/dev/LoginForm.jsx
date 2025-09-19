@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import api from "../lib/axios.js"
+import data from './DummyJournalData.js'
 
 const LoginForm = () => {
     const [email, setEmail] = useState("")
