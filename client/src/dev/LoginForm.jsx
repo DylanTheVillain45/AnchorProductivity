@@ -3,13 +3,23 @@ import api from "../lib/axios.js"
 import data from './DummyJournalData.js'
 
 const LoginForm = () => {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(email, password)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { data } = await api.post("/auth/login", {
+        email,
+        password,
+      });
+
+      localStorage.setItem("token", data.token)
+    } catch (error) {
+      console.log("Login Error:", error);
     }
+  };
 
   return (
     <form
@@ -39,6 +49,6 @@ const LoginForm = () => {
       </button>
     </form>
   );
-}
+};
 
 export default LoginForm;

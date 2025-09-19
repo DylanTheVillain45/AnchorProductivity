@@ -4,6 +4,7 @@ import cors from "cors";
 import { connectDB } from "./config/db.js";
 import userRouter from "./routes/userRoutes.js";
 import authRouter from "./routes/authRouter.js";
+import journalRouter from "./routes/journalRouter.js";
 
 dotenv.config({ quiet: true });
 
@@ -23,6 +24,7 @@ app.use((req, res, next) => {
 
 app.use("/api/users", userRouter);
 app.use("/api/auth", authRouter)
+app.use("/api/journals", journalRouter);
 
 connectDB().then(() => {
     app.listen(PORT, () => {
