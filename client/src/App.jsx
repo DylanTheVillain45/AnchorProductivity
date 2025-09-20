@@ -1,26 +1,30 @@
 import { Routes, Route } from "react-router-dom";
-import SignUpForm from "./dev/SignUpForm";
-import LoginForm from "./dev/LoginForm";
+import SignUpForm from "./components/SignUpForm";
+import LoginForm from "./components/LoginForm";
 import UserList from "./dev/UserList";
 import JournalDisplay from "./dev/JournalDisplay";
 import CreateJournal from "./dev/CreateJournal";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SignUpPage";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
     <>
-      <SignUpForm />
+      {/* <SignUpForm />
       <LoginForm />
       <UserList />
       <CreateJournal />
       <JournalDisplay />
-      <LoginPage />
-
+      <LoginPage /> */}
 
       <Routes>
-        <Route path="/Dashboard" element={<Dashboard />} />
-      </Routes
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/*" element={<NotFound />} />
+      </Routes>
     </>
   );
 }

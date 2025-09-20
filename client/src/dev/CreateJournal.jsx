@@ -29,6 +29,8 @@ const CreateJournal = () => {
     }
   }
 
+
+
   return (
     <div className="card w-full max-w-md bg-base-100 shadow-xl">
       <form className="card-body" onSubmit={handleSumbit}>
