@@ -10,17 +10,21 @@ import LoginPage from "./pages/LoginPage";
 function App() {
   return (
     <>
+    {/*}
       <SignUpForm />
       <LoginForm />
       <UserList />
       <CreateJournal />
       <JournalDisplay />
-      <LoginPage />
+      <LoginPage /> */}
+
+
+      <Dashboard />
 
 
       <Routes>
         <Route path="/Dashboard" element={<Dashboard />} />
-      </Routes
+      </Routes>
     </>
   );
 }
