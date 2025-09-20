@@ -11,21 +11,12 @@ import NotFound from "./pages/NotFound";
 
 function App() {
   return (
-    <>
-      {/* <SignUpForm />
-      <LoginForm />
-      <UserList />
-      <CreateJournal />
-      <JournalDisplay />
-      <LoginPage /> */}
-
-      <Routes>
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/*" element={<NotFound />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/signup" element={<SignUpPage />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/*" element={<NotFound />} />
+    </Routes>
   );
 }
 
