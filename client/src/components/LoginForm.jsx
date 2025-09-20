@@ -1,10 +1,28 @@
-import React, { useState } from 'react'
-import api from "../lib/axios.js"
-import data from './DummyJournalData.js'
+import React, { useEffect, useState } from "react";
+import api from "../lib/axios.js";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 const LoginForm = () => {
+  const { login, logout } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      handleSuccess();
+    } else {
+      logout()
+    }
+  }, []);
+
+  const handleSuccess = () => {
+    navigate("/dashboard");
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,8 +33,10 @@ const LoginForm = () => {
         password,
       });
 
-      localStorage.setItem("token", data.token)
+      login(data.token, data.user)
+      handleSuccess();
     } catch (error) {
+      logout()
       console.log("Login Error:", error);
     }
   };

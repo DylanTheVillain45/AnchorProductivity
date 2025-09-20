@@ -1,21 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import api from "../lib/axios.js";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth.jsx";
 
 const SignUpForm = () => {
+  const { login, logout } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate;
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      handleSuccess();
+    } else {
+      logout();
+    }
+  }, []);
+
+  const handleSuccess = () => {
+    navigate("/dashboard");
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     try {
-      api.post("/auth/signup", {
+      const { data } = api.post("/auth/signup", {
         email,
         password,
         role: "user",
       });
+
+      login(data.token, data.user)
+      handleSuccess();
     } catch (error) {
-      console.log(error)
+      logout()
+      console.log(error);
     }
   };
 

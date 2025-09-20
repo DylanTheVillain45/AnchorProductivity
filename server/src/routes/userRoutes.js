@@ -4,7 +4,7 @@ import authenticateToken from "../middleware/authenticateToken.js";
 
 const userRouter = express.Router();
 
-userRouter.get("/", authenticateToken({isAdmin: true}), getAllUsers);
+userRouter.get("/", getAllUsers);
 userRouter.get("/:id", getUserbyId);
 userRouter.delete("/deleteAll", deleteAllUsers);
 

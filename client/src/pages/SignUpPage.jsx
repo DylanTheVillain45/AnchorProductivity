@@ -1,11 +1,10 @@
 import React from "react";
 import SignUpForm from "../components/SignUpForm.jsx";
-import LoginForm from "../components/LoginForm.jsx";
 import joshuaImage from "../assets/joshua.png";
 import starrynight from "../assets/starrynight.jpg";
 import { Link } from "react-router-dom";
 
-const LoginPage = () => {
+const SignUpPage = () => {
   return (
     <div
       className="flex items-center justify-center min-h-screen p-10 bg-purple-200"
@@ -18,9 +17,9 @@ const LoginPage = () => {
     >
       <div className="flex gap-5 p-10 bg-white rounded-xl shadow-xl max-w-5xl w-full h-[80vh]">
         <div className="flex flex-col items-center justify-center w-1/2 gap-6">
-          <LoginForm />
-          <Link to="/signup" className="btn btn-primary w-3/4">
-            Don’t Have an Account? Sign Up Here
+          <SignUpForm />
+          <Link to="/login" className="btn btn-primary w-3/4">
+            Have an Account? Log In Here
           </Link>
         </div>
 
@@ -36,4 +35,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignUpPage;
