@@ -1,8 +1,7 @@
 import React from "react";
-import SignUpForm from "../components/SignUpForm.jsx";
-import LoginForm from "../components/LoginForm.jsx";
-import joshuaImage from "../assets/joshua.png";
-import starrynight from "../assets/starrynight.jpg";
+import LoginForm from "../../components/auth/LoginForm.jsx";
+import joshuaImage from "../../assets/joshua.png";
+import starrynight from "../../assets/starrynight.jpg";
 import { Link } from "react-router-dom";
 
 const LoginPage = () => {

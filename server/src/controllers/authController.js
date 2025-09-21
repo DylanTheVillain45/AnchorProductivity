@@ -27,7 +27,7 @@ export async function SignUp(req, res) {
         role: newUser.role,
       },
       process.env.JWT_SECRET,
-      { expiresIn: JWT_EXPIRES_IN }
+      { expiresIn: process.env.JWT_EXPIRES_IN }
     );
 
     res.status(201).json({

@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import api from "../lib/axios.js";
+import api from "../../lib/axios.js";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth.jsx";
+import { useAuth } from "../../hooks/useAuth.jsx";
 
-const SignUpForm = () => {
+const LoginForm = () => {
   const { login, logout } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -24,30 +24,29 @@ const SignUpForm = () => {
     navigate("/dashboard");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const { data } = api.post("/auth/signup", {
+      const { data } = await api.post("/auth/login", {
         email,
         password,
-        role: "user",
       });
-
-      login(data.token, data.user)
+      
+      login(data.token, data.user);
       handleSuccess();
     } catch (error) {
-      logout()
-      console.log(error);
+      logout();
+      console.log("Login Error:", error);
     }
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-base-100 w-2/3 max-w-sm flex flex-col p-6 shadow-xl rounded-xl"
+      className="card bg-base-100 w-full max-w-sm shadow-xl p-6"
     >
-      <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
+      <h2 className="text-2xl font-bold mb-4">Log In</h2>
 
       <input
         type="email"
@@ -66,10 +65,10 @@ const SignUpForm = () => {
       />
 
       <button type="submit" className="btn btn-primary w-full">
-        Create Account
+        Log In
       </button>
     </form>
   );
 };
 
-export default SignUpForm;
+export default LoginForm;
