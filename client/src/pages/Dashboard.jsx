@@ -7,11 +7,12 @@ import Sidebar from '../components/nav/SideBar'
 const Dashboard = () => {
     const { user, verifyUser} = useAuth()
     const navigate = useNavigate()
-    
-    useEffect(() => {
-        verifyUser
-    }, [])
 
+    useEffect(() => {
+        if (user == null) {
+            navigate("/login")
+        }
+    }, [])
     
     return (
       <div

@@ -23,12 +23,14 @@ export function AuthProvider({ children }) {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUser(data.user);
-      return data.user
+      return data.user;
     } catch (error) {
-      console.error("Auth verification failed", error);
-      localStorage.removeItem("token");
-      setUser(null);
-      return null
+      console.error(
+        "Auth verification failed",
+        error.response?.data || error.message
+      );
+      logout()
+      return null;
     }
   };
 
@@ -38,13 +40,13 @@ export function AuthProvider({ children }) {
   };
 
   const logout = () => {
-    // localStorage.removeItem("token");
+    localStorage.removeItem("token");
     setUser(null);
   };
 
   return (
     <AuthContext.Provider value={{ user, loading, login, logout, VerifyUser }}>
-      {children}
+      {loading ? <div>Loading...</div> : children}
     </AuthContext.Provider>
   );
 }
